@@ -3,7 +3,7 @@ package zte.user;
 /**
  * Created by Administrator on 2017/6/18.
  */
-public class Foot {
+public class Foot extends Father{
     private final int amount;
 
     public Foot(int amount) {
@@ -12,15 +12,15 @@ public class Foot {
 
     @Override
     public boolean equals(Object o){
-        Foot mile = (Foot) o;
-        return this.amount == mile.amount;
+        Inch inch = ((Father) o).toInch();//直接转换为Inch类
+        return this.toInch().getAmount() == inch.getAmount();
     }
-
-    public Foot add(Object o) {
-        Foot mile = (Foot) o;
-        return new Foot(this.amount + mile.amount);
+    @Override
+    public Inch add(Object o) {
+        Inch inch = ((Father) o).toInch();
+        return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
-
+    @Override
     public Inch toInch() {
         return new Inch(this.amount * 12);
     }

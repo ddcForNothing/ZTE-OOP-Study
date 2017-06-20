@@ -1,0 +1,32 @@
+
+需求
+    1、Inch Foot Yard Mile 相互之间能够进行比较，以及add方法
+
+实现
+1   date 06/18 相同类比较和相加, 实现以及测试完成
+
+2（不同类比较和相加）、将所有的类都实现toInch()方法,都转化为Inch类进行比较和相加
+    date 06/19 预计采用共同继承相同抽象类的方法，存equal(),add(),toInch()方法
+        (接口内方法不能实现，而抽象类中方法可以实现也可以不实现)
+    date 06/20 14:00 a、toInch,equal,add方法在抽象类中均不实现，toInch方法测试完成
+                     b、测试开发equals方法，通过toInch()转化为Inch进行比较
+                        equals()方法测试错误
+                        原因：equals()方法中形参应该调用Object类而不是抽象类Father
+                        处理：修改形参，并且将equals方法从Father移除
+                        测试成功
+    date 06/20 19:00 a、测试开发add方法,通过toInch()转化为Inch进行相加
+
+    date 06/20 20:00 发现四个类中add()方法和equals()方法实现完全相同，
+                        将这两个方法在Father中实现，同时删除这4个类中的对应方法
+                      toInch()方法保持不变
+
+    需求实现完毕
+
+3、使用泛型实现（貌似没有必要）
+4、对于更多的相近的类，能够很好的进行扩展
+
+
+
+
+
+github.com/hxfirefox/TDD-oosample  ZTE黄翔老师github

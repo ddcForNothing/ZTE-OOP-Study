@@ -3,7 +3,7 @@ package zte.user;
 /**
  * Created by Administrator on 2017/6/18.
  */
-public class Mile {
+public class Mile extends Father{
     private final int amount;
 
     public Mile(int amount) {
@@ -12,15 +12,15 @@ public class Mile {
 
     @Override
     public boolean equals(Object o){
-        Mile mile = (Mile) o;
-        return this.amount == mile.amount;
+        Inch inch = ((Father) o).toInch();
+        return this.toInch().getAmount() == inch.getAmount();
     }
-
-    public Mile add(Object o) {
-        Mile mile = (Mile) o;
-        return new Mile(this.amount + mile.amount);
+    @Override
+    public Inch add(Object o) {
+        Inch inch = ((Father) o).toInch();
+        return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
-
+    @Override
     public Inch toInch() {
         return new Inch(this.amount * 1760 * 3 * 12);
     }

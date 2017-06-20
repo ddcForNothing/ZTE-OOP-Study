@@ -3,7 +3,7 @@ package zte.user;
 /**
  * Created by Administrator on 2017/6/18.
  */
-public class Yard {
+public class Yard extends Father{
     private final int amount;
 
     public Yard(int amount) {
@@ -11,15 +11,15 @@ public class Yard {
     }
     @Override
     public boolean equals(Object o){
-        Yard yard = (Yard) o;
-        return this.amount == yard.amount;
+        Inch inch = ((Father) o).toInch();
+        return this.toInch().getAmount() == inch.getAmount();
     }
-
-    public Yard add(Object o) {
-        Yard yard = (Yard) o;
-        return new Yard(this.amount + yard.amount);
+    @Override
+    public Inch add(Object o) {
+        Inch inch = ((Father) o).toInch();
+        return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
-
+    @Override
     public Inch toInch() {
         return new Inch(this.amount * 3 * 12);
     }

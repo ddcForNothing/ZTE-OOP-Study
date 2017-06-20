@@ -3,8 +3,13 @@ package zte.user;
 /**
  * Created by Administrator on 2017/6/18.
  */
-public class Inch{
+public class Inch extends Father{
+
     private final int amount;
+
+    public int getAmount() {
+        return amount;
+    }
 
     public Inch(int amount) {
         this.amount = amount;
@@ -12,15 +17,15 @@ public class Inch{
 
     @Override
     public boolean equals(Object o){
-        Inch mile = (Inch) o;
-        return this.amount == mile.amount;
+        Inch inch = ((Father) o).toInch();
+        return this.getAmount() == inch.getAmount();
     }
-
+    @Override
     public Inch add(Object o) {
-        Inch inch = (Inch) o;
-        return new Inch(this.amount + inch.amount);
+        Inch inch = ((Father) o).toInch();
+        return new Inch(this.getAmount() + inch.getAmount());
     }
-
+    @Override
     public Inch toInch() {
         return new Inch(this.amount);
     }
