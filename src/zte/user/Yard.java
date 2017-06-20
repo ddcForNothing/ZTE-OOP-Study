@@ -9,6 +9,7 @@ public class Yard extends Father{
     public Yard(int amount) {
         this.amount = amount;
     }
+    /*
     @Override
     public boolean equals(Object o){
         Inch inch = ((Father) o).toInch();
@@ -19,6 +20,8 @@ public class Yard extends Father{
         Inch inch = ((Father) o).toInch();
         return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
+    */
+
     @Override
     public Inch toInch() {
         return new Inch(this.amount * 3 * 12);

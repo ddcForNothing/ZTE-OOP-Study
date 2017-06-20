@@ -10,6 +10,7 @@ public class Mile extends Father{
         this.amount = amount;
     }
 
+    /*
     @Override
     public boolean equals(Object o){
         Inch inch = ((Father) o).toInch();
@@ -20,6 +21,8 @@ public class Mile extends Father{
         Inch inch = ((Father) o).toInch();
         return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
+    */
+
     @Override
     public Inch toInch() {
         return new Inch(this.amount * 1760 * 3 * 12);

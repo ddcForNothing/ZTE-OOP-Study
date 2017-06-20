@@ -10,6 +10,7 @@ public class Foot extends Father{
         this.amount = amount;
     }
 
+    /*
     @Override
     public boolean equals(Object o){
         Inch inch = ((Father) o).toInch();//直接转换为Inch类
@@ -20,6 +21,7 @@ public class Foot extends Father{
         Inch inch = ((Father) o).toInch();
         return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
+     */
     @Override
     public Inch toInch() {
         return new Inch(this.amount * 12);

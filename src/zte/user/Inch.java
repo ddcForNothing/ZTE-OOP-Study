@@ -15,6 +15,7 @@ public class Inch extends Father{
         this.amount = amount;
     }
 
+    /*
     @Override
     public boolean equals(Object o){
         Inch inch = ((Father) o).toInch();
@@ -23,8 +24,10 @@ public class Inch extends Father{
     @Override
     public Inch add(Object o) {
         Inch inch = ((Father) o).toInch();
-        return new Inch(this.getAmount() + inch.getAmount());
+        return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
+    */
+
     @Override
     public Inch toInch() {
         return new Inch(this.amount);
