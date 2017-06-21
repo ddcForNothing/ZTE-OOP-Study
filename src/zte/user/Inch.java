@@ -3,7 +3,7 @@ package zte.user;
 /**
  * Created by Administrator on 2017/6/18.
  */
-public class Inch extends Father{
+public class Inch{
 
     private final int amount;
 
@@ -15,21 +15,19 @@ public class Inch extends Father{
         this.amount = amount;
     }
 
-    /*
     @Override
+    /**equal方法重写*/
     public boolean equals(Object o){
-        Inch inch = ((Father) o).toInch();
-        return this.getAmount() == inch.getAmount();
+        Inch inch = ((Inch) o).toInch();//直接转换为Inch类
+        return this.toInch().getAmount() == inch.getAmount();
     }
-    @Override
+    /**add方法*/
     public Inch add(Object o) {
-        Inch inch = ((Father) o).toInch();
+        Inch inch = ((Inch) o).toInch();
         return new Inch(this.toInch().getAmount() + inch.getAmount());
     }
-    */
-
-    @Override
-    public Inch toInch() {
+    public Inch toInch(){
         return new Inch(this.amount);
     }
+
 }
