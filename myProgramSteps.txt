@@ -39,6 +39,12 @@
             如果不是，equals返回false，add方法返回this
         b、对toInch方法，在每个子类进行重写
 
+            or
+                Inch实现toInch(),子类重写inchAmount()单位转换方法
+                public Inch toInch(){
+                    return new Inch(this.inchAmount());
+                }
+
 
 
 

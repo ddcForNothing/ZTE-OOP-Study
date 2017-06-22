@@ -14,14 +14,15 @@ public class Inch{
     public Inch(int amount) {
         this.amount = amount;
     }
+
     /**空构造方法*/
     public Inch(){
         this.amount = 10;//amount初始化
     }
     /**返回转换为Inch类所对应的amount值*/
-    public int inchAmount(){
-        return this.amount;
-    }
+    //public int inchAmount(){
+    //    return this.amount;
+    //}
 
     @Override
     /**equal方法重写*/
@@ -41,7 +42,7 @@ public class Inch{
         return this;//如果检测失败，返回原类
     }
     public Inch toInch(){
-        return new Inch(this.inchAmount());
+        return new Inch(this.getAmount());
     }
 
 }
