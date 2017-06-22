@@ -1,6 +1,9 @@
 package zte.test;
 
 import org.junit.Test;
+import zte.user.Foot;
+import zte.user.Inch;
+import zte.user.Mile;
 import zte.user.Yard;
 
 import static org.junit.Assert.assertEquals;
@@ -18,5 +21,12 @@ public class YardTest {
     @Test
     public void should_yard3_equals_yard3(){
         assertEquals(new Yard(3), new Yard(3));
+    }
+
+    @Test
+    public void test() throws Exception{
+        //Foot foot = new Foot();
+        //检测Mile对象是不是Inch类型测试
+        assertEquals(true, new Mile(1) instanceof Inch);
     }
 }
