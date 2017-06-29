@@ -1,7 +1,7 @@
 package zte.test;
 
 import org.junit.Test;
-import zte.user.Foot;
+import user.Length;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,10 +11,10 @@ import static org.junit.Assert.assertEquals;
 public class FootTest {
     @Test
     public void should_Foot3_Add_Foot2_equals_Foot5() throws Exception{
-        assertEquals(new Foot(5), new Foot(2).add(new Foot(3)));
+        assertEquals(Length.foot(5), Length.foot(2).add(Length.foot(3)));
     }
     @Test
     public void should_Foot3_equals_Foot3(){
-        assertEquals(new Foot(3), new Foot(3));
+        assertEquals(Length.foot(3), Length.foot(3));
     }
 }

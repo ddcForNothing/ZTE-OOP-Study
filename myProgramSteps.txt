@@ -32,6 +32,7 @@
         question?   能否做到上下皆兼容呢
 
 
+    toInch()
 
 
     date 06/22 21:50
@@ -48,6 +49,13 @@
 
 
 
+date 2017-06-28
+    1、按照黄翔老师的步骤一步步优化代码
+        a、为了阻止继承Length新建新的单位类，在Length内部实现实现工厂模式，
+        （private构造方法，构建public static Length mile()等获取单位对象的方法）
+        b、将单位封装为新的枚举类
 
+    2、实现新的需求，逐级输出,简单实现完成
+        2.1 在枚举类中用switch找到当前单位的低一级单位
 
 github.com/hxfirefox/TDD-oosample  ZTE黄翔老师github
