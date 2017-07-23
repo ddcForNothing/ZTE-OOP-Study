@@ -7,10 +7,10 @@ import java.util.*;
  * 牌组建立以及抽牌逻辑,提供唯一的对外接口
  */
 public class CardGroup {
-    private static List<Card> cardGroup = null;
+    private List<Card> cardGroup = null;
 
     //牌组建立
-    private static void createGroup(){
+    private void createGroup(){
         cardGroup = new LinkedList<Card>();
         for (int i = 2; i <= 14; ++i) {
             cardGroup.add(Card.createA(i));
@@ -22,28 +22,26 @@ public class CardGroup {
 
     //电脑和玩家抽牌, 也是唯一同外界交流的方法
     public static void drawCards(final List<Card> computer, final List<Card> customer){
-        createGroup();
-        computer.addAll(drawFiveOrderCards());
-        customer.addAll(drawFiveOrderCards());
+        CardGroup group = new CardGroup();
+        group.createGroup();
+        computer.addAll(group.drawFiveOrderCards());
+        customer.addAll(group.drawFiveOrderCards());
     }
 
     //将抽到的5张牌进行排序
-    private static List<Card> drawFiveOrderCards(){
+    private List<Card> drawFiveOrderCards(){
         List<Card> list = new LinkedList<Card>();
         drawFiveRandomCards(list);
         Collections.sort(list, (a, b)->a.compareTo(b));//Lambda 表达式
         return list;
     }
     //随机抽5张牌
-    private static void drawFiveRandomCards(List<Card> list) {
+    private void drawFiveRandomCards(List<Card> list) {
+        int size, randomNum;
         for (int i = 0; i < 5; i++) {
-            list.add(drawOneCard());
+            size = cardGroup.size();
+            randomNum = (int)(Math.random() * size);//随机数 0 - size-1
+            list.add(cardGroup.remove(randomNum));
         }
-    }
-    //随机抽一张牌
-    private static Card drawOneCard() {
-        int size = cardGroup.size();
-        int randomNum = (int)(Math.random() * size);//随机数 0 - size-1
-        return cardGroup.remove(randomNum);
     }
 }

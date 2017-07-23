@@ -20,15 +20,19 @@ public class GroupDegreeAnalysis {
         return enumSet.size() > 1 ? false : true;//花色种类大于1为false
     }
 
-    //获得牌的度，对外唯一接口
-    public int getDegree(List<Card> group) {
+    private GroupDegreeAnalysis(){
         enumSet = EnumSet.noneOf(CardType.class);
         continuousCard = true;
-        return getEightDegree(group);
+    }
+
+    //获得牌的度，对外唯一接口
+    public static int getDegree(List<Card> group) {
+        GroupDegreeAnalysis analysis = new GroupDegreeAnalysis();
+        return analysis.getContinuousOrFlushDegree(group);
     }
 
     //判断是不是同花顺
-    private int getEightDegree(List<Card> group) {
+    private int getContinuousOrFlushDegree(List<Card> group) {
         for (int i = 0; i < group.size(); ++i) {
             Card card = group.get(i);
             enumSet.add(card.getType());
@@ -38,53 +42,42 @@ public class GroupDegreeAnalysis {
                 continuousCard = false;
             }
         }
-        return ((continuousCard && sameColorJudge())
-                ? 8 : getSevenDegree(group));//同花且顺返回8，否则判断是否为4条
+
+        if (continuousCard && sameColorJudge()) {
+            return 8;
+        } else if (sameColorJudge()) {
+            return 5;
+        } else if (continuousCard) {
+            return 4;
+        } else {
+            return getOtherDegree(group);
+        }
     }
 
-    //判断四条
-    private int getSevenDegree(List<Card> group) {
-        boolean flag = group.get(0).getNum() == group.get(3).getNum() ||
-                group.get(1).getNum() == group.get(4).getNum();//0 3 或者 1 4值相等，则为四条
-        return flag ? 7 : getSixDegree(group);//如果为4条，返回7，否则判断葫芦
-    }
-
-    //判断葫芦
-    private int getSixDegree(List<Card> group) {
-        boolean flag = ((group.get(0).getNum() == group.get(1).getNum()) &&
-                (group.get(2).getNum() == group.get(4).getNum())) ||
-                ((group.get(0).getNum() == group.get(2).getNum()) &&
-                (group.get(3).getNum() == group.get(4).getNum()));//葫芦判定
-        return flag ? 6 : getFiveDegree(group);
-    }
-
-    //判断同花
-    private int getFiveDegree(List<Card> group) {
-        return sameColorJudge() ? 5 : getFourDegree(group);
-    }
-
-    //判断顺子
-    private int getFourDegree(List<Card> group) {
-        return continuousCard ? 4 : getThreeDegree(group);
-    }
-
-    //判断3条
-    private int getThreeDegree(List<Card> group) {
-        boolean flag = (group.get(0).getNum() == group.get(2).getNum())
-                || (group.get(1).getNum() == group.get(3).getNum())
-                || (group.get(2).getNum() == group.get(4).getNum());
-        return flag ? 3 : getOtherDegree(group);
-    }
-
-    //两对、一对、散牌判定
+    //其余判断
     private int getOtherDegree(List<Card> group) {
-        int pairNum = 0;//对子数量
+        int flag = 0;
         for (int i = 0; i < group.size() - 1; ++i) {
-            if (group.get(i).getNum() == group.get(i + 1).getNum()) {
-                pairNum ++;
+            for (int j = i + 1; j < group.size(); ++j) {
+                if (group.get(i).compareTo(group.get(j)) == 0) {
+                    flag++;
+                }
             }
         }
 
-        return pairNum;//2表示两对，1表示1对，0表示散牌
+        switch (flag) {
+            case 6:
+                return 7;
+            case 4:
+                return 6;
+            case 3:
+                return 3;
+            case 2:
+                return 2;
+            case 1:
+                return 1;
+            default:
+                return 0;
+        }
     }
 }

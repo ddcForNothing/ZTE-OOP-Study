@@ -36,7 +36,7 @@ public class Card implements Comparable<Card>{
 
     @Override
     public int compareTo(Card card) {
-        return (int) this.num - card.getNum();
+        return (int) Integer.compare(this.num, card.getNum());
     }
 
     @Override
